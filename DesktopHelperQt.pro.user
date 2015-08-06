@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
+<!-- Written by QtCreator 3.3.0, 2015-08-06T11:02:34. -->
+=======
 <!-- Written by QtCreator 3.4.2, 2015-08-06T11:29:32. -->
+>>>>>>> 180c60444210ad2d61cf15c196993fcbe6e0968e
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -228,7 +232,11 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">DesktopHelperQt</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+<<<<<<< HEAD
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/QtProjects/DesktopHelperQT/DesktopHelperQt.pro</value>
+=======
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/bikee/Documents/QTProjects/DesktopHelperQt/DesktopHelperQt.pro</value>
+>>>>>>> 180c60444210ad2d61cf15c196993fcbe6e0968e
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">DesktopHelperQt.pro</value>
     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>

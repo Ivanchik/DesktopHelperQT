@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui xml network
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,10 +14,19 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    base.cpp
+    base.cpp \
+    mainwindow.cpp \
+    weatherdata.cpp
 
 HEADERS  += mainwindow.h \
-    base.h
+    weatherdata.h \
+    base.h \
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    .gitignore \
+    DesktopHelperQt.pro.user \
+    DesktopHelperQt.pro.user.7c9bc3e \
+    LICENSE \
+    README.md
