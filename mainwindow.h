@@ -3,9 +3,13 @@
 
 #include <QMainWindow>
 
+#include "base.h"
+
 namespace Ui {
 class MainWindow;
 }
+
+class Base;
 
 class MainWindow : public QMainWindow
 {
@@ -17,6 +21,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    Base *baseWindow;
+    void SetIpAddress();
 };
 
 #endif // MAINWINDOW_H
