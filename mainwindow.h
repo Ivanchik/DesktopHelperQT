@@ -6,6 +6,10 @@
 
 #include "base.h"
 
+#include <QNetworkReply>
+#include <QNetworkAccessManager>
+#include <QEventLoop>
+
 namespace Ui {
 class MainWindow;
 }

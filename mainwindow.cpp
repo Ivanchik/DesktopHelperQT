@@ -7,11 +7,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    wd = new WeatherData("http://export.yandex.ru/weather-ng/forecasts/27595.xml");
+    wd = new WeatherData();
 
-    ui->temperatureValueLabel->setText(static_cast<QString>(wd->GetTemperature()));
-    ui->pressureValueLabel->setText(static_cast<QString>(wd->GetPressure()));
-    ui->windValueLabel->setText(static_cast<QString>(wd->GetWindSpeed()));
+    qDebug() << "t: " << (wd->GetTemperature());
+    ui->temperatureValueLabel->setText(QString::number(wd->GetTemperature()) + "ºC");
+    ui->pressureValueLabel->setText(QString::number(wd->GetPressure()) + "mm");
+    ui->windValueLabel->setText(QString::number(wd->GetWindSpeed()) + "m/s");
+
 
     baseWindow = new Base(this);
 
