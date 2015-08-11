@@ -27,7 +27,6 @@ void WeatherData::read()
 
 int WeatherData::GetTemperature()
 {
-    qDebug() << "WeatherData::GetTemperature() : " << temperature;
     return temperature;
 }
 

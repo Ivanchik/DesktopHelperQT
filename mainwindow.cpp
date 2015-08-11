@@ -9,7 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     wd = new WeatherData();
 
-    qDebug() << "t: " << (wd->GetTemperature());
     ui->temperatureValueLabel->setText(QString::number(wd->GetTemperature()) + "ºC");
     ui->pressureValueLabel->setText(QString::number(wd->GetPressure()) + "mm");
     ui->windValueLabel->setText(QString::number(wd->GetWindSpeed()) + "m/s");

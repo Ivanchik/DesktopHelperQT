@@ -1,14 +1,15 @@
 #ifndef WEATHERDATA_H
 #define WEATHERDATA_H
 
-#include <QDebug>
-
+//XMLStreamReader for read xml file
 #include <QXmlStreamReader>
 
+//Instruments for access to the internet
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
 #include <QEventLoop>
 
+//Time to get current temperature
 #include <QTime>
 
 class WeatherData : public QObject
@@ -18,17 +19,22 @@ public:
     WeatherData();
     ~WeatherData();
 
-    void read();
-
+    //functions for getting data from api
     int GetTemperature();
     int GetPressure();
     int GetWindSpeed();
 
 private:
+    //function for read and parse data from api xml
+    void read();
+
+    //functions for finding need data
     void processForecast();
     void processFact();
     void processDay();
     void processHour();
+
+    //parse XML
     void parseWeatherXML();
     QString readNextText();
     QString errorString();

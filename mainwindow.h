@@ -26,6 +26,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    //Pointer to the getting weather data
     WeatherData *wd;
     Base *baseWindow;
     void SetIpAddress();
