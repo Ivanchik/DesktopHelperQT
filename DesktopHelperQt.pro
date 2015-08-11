@@ -30,3 +30,6 @@ DISTFILES += \
     DesktopHelperQt.pro.user.7c9bc3e \
     LICENSE \
     README.md
+
+RESOURCES += \
+    resources.qrc

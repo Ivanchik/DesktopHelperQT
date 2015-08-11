@@ -30,6 +30,7 @@ public slots:
     void UpdateAllData();
     void TryGetWeatherData();
 
+    void OnTrayActivate(QSystemTrayIcon::ActivationReason active);
 private:
     Ui::MainWindow *ui;
     WeatherData *weatherData;

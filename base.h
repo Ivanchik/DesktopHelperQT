@@ -13,6 +13,9 @@
 #include <QNetworkRequest>
 #include <QUrl>
 #include <QUrlQuery>
+#include <QSystemTrayIcon>
+#include <QMenu>
+
 
 #include "mainwindow.h"
 
@@ -24,7 +27,9 @@ class Base : public QObject
 private:
     QByteArray ipAddress;
     MainWindow* view;
+    QSystemTrayIcon *trayIcon;
 
+    void WorkWithSystemTray();
 public:
     Base(MainWindow* view);
     QString getIP();

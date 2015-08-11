@@ -80,3 +80,11 @@ void MainWindow::TryGetWeatherData()
     ui->windValueLabel->setText(weatherData->GetWindSpeed() + "m/s");
 
 }
+
+void MainWindow::OnTrayActivate(QSystemTrayIcon::ActivationReason active)
+{
+    if (active == QSystemTrayIcon::DoubleClick)
+        ui->centralWidget->setWindowState(Qt::WindowNoState);
+
+
+}

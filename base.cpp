@@ -9,10 +9,31 @@ Base::Base(MainWindow *view)
     // save view form
     this->view = view;
 
+    WorkWithSystemTray();
+
     InitUpdateValuteData();
 
 }
 
+void Base::WorkWithSystemTray()
+{
+    try
+    {
+        if (!QSystemTrayIcon::isSystemTrayAvailable()) return;
+        trayIcon = new QSystemTrayIcon(QIcon("://images/superman.ico"), this);
+        QMenu *menu = new QMenu("Desktop Helper");
+        trayIcon->setContextMenu(menu);
+        trayIcon->show();
+
+        connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                                 view, SLOT(OnTrayActivate(QSystemTrayIcon::ActivationReason)));
+    }
+    catch (...)
+    {
+        qWarning() << "Error in System Tray method";
+    }
+
+}
 
 void Base::InitUpdateValuteData()
 {
@@ -114,6 +135,8 @@ void Base::OnLoad(QNetworkReply *reply)
 
 
 }
+
+
 
 QString Base::getIP()
 {
