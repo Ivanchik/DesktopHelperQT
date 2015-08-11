@@ -1,9 +1,5 @@
 #include "base.h"
 
-
-
-
-
 Base::Base(MainWindow *view)
 {
     // save view form
