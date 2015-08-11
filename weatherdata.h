@@ -1,9 +1,10 @@
 #ifndef WEATHERDATA_H
 #define WEATHERDATA_H
 
-//#define USE_READ_ELEMENT_TEXT 1
+#include <QDebug>
 
 #include <QXmlStreamReader>
+
 #include <QMap>
 #include <QDebug>
 #include <QDomNode>
@@ -13,11 +14,17 @@
 #include <QUrl>
 #include <QUrlQuery>
 
+#include <QNetworkReply>
+#include <QNetworkAccessManager>
+#include <QEventLoop>
+#include <QTime>
+
+
 class WeatherData : public QObject
 {
     Q_OBJECT
 public:
-    WeatherData(QString path);
+    WeatherData();
     ~WeatherData();
 
     void read();
@@ -30,13 +37,17 @@ public:
 public slots:
 
 private:
-    void processRates();
-    void processRate();
+    void processForecast();
+    void processFact();
+    void processDay();
+    void processHour();
+    void parseWeatherXML();
     QString readNextText();
     QString errorString();
+    int current_hour;
 
     QString _filname;
-    QXmlStreamReader *xml;
+    QXmlStreamReader xmlReader;
 
     int temperature;
     int pressure;

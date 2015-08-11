@@ -82,16 +82,16 @@
        <item>
         <layout class="QVBoxLayout" name="weatherValuesLayout">
          <item>
-          <widget class="QLabel" name="windValueLabel">
+          <widget class="QLabel" name="temperatureValueLabel">
            <property name="text">
-            <string>wind</string>
+            <string>temperature</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="temperatureValueLabel">
+          <widget class="QLabel" name="windValueLabel">
            <property name="text">
-            <string>temperature</string>
+            <string>wind</string>
            </property>
           </widget>
          </item>
@@ -140,16 +140,16 @@
        <item>
         <layout class="QVBoxLayout" name="rateValuesLayout">
          <item>
-          <widget class="QLabel" name="euroValueLabel">
+          <widget class="QLabel" name="dollarValueLabel">
            <property name="text">
-            <string>euro</string>
+            <string>dollar</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="dollarValueLabel">
+          <widget class="QLabel" name="euroValueLabel">
            <property name="text">
-            <string>dollar</string>
+            <string>euro</string>
            </property>
           </widget>
          </item>
@@ -186,31 +186,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>188</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuDesktop_Helper">
-    <property name="title">
-     <string>Desktop Helper</string>
-    </property>
-   </widget>
-   <addaction name="menuDesktop_Helper"/>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

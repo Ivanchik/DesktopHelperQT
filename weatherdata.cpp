@@ -1,15 +1,14 @@
 #include "weatherdata.h"
 
+
 #include <QNetworkReply>
 
 
 
-WeatherData::WeatherData(QString path)
+WeatherData::WeatherData()
 {
-    xml = new QXmlStreamReader(path);
-    _filname = path;
-    read();
-
+    current_hour = QTime::currentTime().hour();
+    parseWeatherXML();
 
 }
 
@@ -20,21 +19,22 @@ WeatherData::~WeatherData()
 
 void WeatherData::read()
 {
-    if (xml->readNextStartElement() && xml->name() == "forecast")
-        processRates();
+    if (xmlReader.readNextStartElement() && xmlReader.name() == "forecast")
+        processForecast();
 
-    if (xml->tokenType() == QXmlStreamReader::Invalid)
-        xml->readNext();
+    if (xmlReader.tokenType() == QXmlStreamReader::Invalid)
+        xmlReader.readNext();
 
-    if (xml->hasError()) {
-        xml->raiseError();
+    if (xmlReader.hasError()) {
+        xmlReader.raiseError();
         qDebug() << errorString();
     }
 }
 
 int WeatherData::GetTemperature()
 {
-    return 0;
+    qDebug() << "WeatherData::GetTemperature() : " << temperature;
+    return temperature;
 }
 
 int WeatherData::GetPressure()
@@ -47,46 +47,94 @@ int WeatherData::GetWindSpeed()
     return wind_speed;
 }
 
-void WeatherData::processRates()
+void WeatherData::processForecast()
 {
-    if (!xml->isStartElement() || xml->name() != "forecast")
+    if (!xmlReader.isStartElement() || xmlReader.name() != "forecast")
         return;
-    while (xml->readNextStartElement()) {
-        if (xml->name() == "fact")
-            processRate();
+    while (xmlReader.readNextStartElement()) {
+        if (xmlReader.name() == "fact")
+            processFact();
         else
-            xml->skipCurrentElement();
+            if (xmlReader.name() == "day")
+                processDay();
+            else
+                xmlReader.skipCurrentElement();
     }
 }
 
-void WeatherData::processRate()
+void WeatherData::processFact()
 {
-    if (!xml->isStartElement() || xml->name() != "fact")
+    if (!xmlReader.isStartElement() || xmlReader.name() != "fact")
         return;
 
-    while (xml->readNextStartElement()) {
-        if (xml->name() == "pressure")
+    while (xmlReader.readNextStartElement()) {
+        if (xmlReader.name() == "pressure")
             pressure = readNextText().toInt();
-        else if (xml->name() == "wind_speed")
-            wind_speed = readNextText().toInt();
-//        else if (xml.name() == "conversion")
-//            conversion = readNextText();
+        else if (xmlReader.name() == "wind_speed")
+        {
+            wind_speed = readNextText().toDouble();
+        }
+
 #ifndef USE_READ_ELEMENT_TEXT
-        xml->skipCurrentElement();
+        xmlReader.skipCurrentElement();
 #endif
     }
+}
 
-//    if (!(from.isEmpty() || to.isEmpty() || conversion.isEmpty()))
-//        Currency::addRate(from, to, conversion);
+void WeatherData::processDay()
+{
+    if (!xmlReader.isStartElement() || xmlReader.name() != "day")
+        return;
+
+    int hour_count = current_hour;
+    while (xmlReader.readNextStartElement()) {
+        if (xmlReader.name() == "hour" && hour_count > 0)
+            hour_count--;
+        else if (xmlReader.name() == "hour" && hour_count == 0)
+        {
+            processHour();
+            hour_count = -1;
+            break;
+        }
+
+#ifndef USE_READ_ELEMENT_TEXT
+        xmlReader.skipCurrentElement();
+#endif
+    }
+}
+
+void WeatherData::processHour()
+{
+    if (!xmlReader.isStartElement() || xmlReader.name() != "hour")
+        return;
+
+    while (xmlReader.readNextStartElement()) {
+        if(xmlReader.name() == "temperature")
+            temperature = readNextText().toInt();
+    }
+
+}
+
+void WeatherData::parseWeatherXML()
+{
+    const QString weatherApi = "http://export.yandex.ru/weather-ng/forecasts/27595.xml";
+
+    QNetworkAccessManager network_mgr;
+    QNetworkReply *reply = network_mgr.get(QNetworkRequest(weatherApi));
+    QEventLoop loop;
+    connect(reply, SIGNAL(finished()),&loop, SLOT(quit()));
+    loop.exec();
+    xmlReader.addData(reply->readAll());
+    read();
 }
 
 QString WeatherData::readNextText()
 {
 #ifndef USE_READ_ELEMENT_TEXT
-    xml->readNext();
-    return xml->text().toString();
+    xmlReader.readNext();
+    return xmlReader.text().toString();
 #else
-    return xml->readElementText();
+    return xmlReader.readElementText();
 #endif
 }
 
