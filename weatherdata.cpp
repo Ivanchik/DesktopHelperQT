@@ -26,7 +26,6 @@ void WeatherData::read()
 
 QString WeatherData::GetTemperature()
 {
-    qDebug() << "WeatherData::GetTemperature() : " << temperature;
     return temperature;
 }
 
@@ -122,6 +121,7 @@ void WeatherData::InitUpdateWeatherData()
     read();
 
     emit trySendWeatherData();
+    qDebug() << "signal for weather update is sended";
 }
 
 QString WeatherData::readNextText()

@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui xml network
-
+CONFIG += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,4 +29,8 @@ DISTFILES += \
     DesktopHelperQt.pro.user \
     DesktopHelperQt.pro.user.7c9bc3e \
     LICENSE \
-    README.md
+    README.md \
+    background.png
+
+RESOURCES += \
+    images.qrc
