@@ -11,8 +11,66 @@ Base::Base(MainWindow *view)
 
     //get ip address
 
+}
 
 
+void Base::Test()
+{
+    QNetworkAccessManager *m_nam = new QNetworkAccessManager();
+
+    connect(m_nam, SIGNAL(finished(QNetworkReply*)), SLOT(OnLoad(QNetworkReply*)));
+
+    QUrlQuery postData;
+    // postData.addQueryItem("ID", "R01235");
+    QNetworkRequest req(QUrl("http://www.cbr.ru/scripts/XML_daily.asp?"));
+     req.setHeader(QNetworkRequest::ContentTypeHeader,
+                   "application/x-www-form-urlencoded");
+
+     m_nam->post(req, postData.toString(QUrl::FullyEncoded).toUtf8());
+
+}
+
+void Base::OnLoad(QNetworkReply *reply)
+{
+
+
+//// TODO
+/// Refactor code
+
+     QByteArray allData = reply->readAll();
+     QXmlStreamReader xmlDoc(allData);
+     //QXmlStreamReader::TokenType token;
+     QXmlStreamAttributes attrib;
+
+     bool flag = false;
+
+     while (!xmlDoc.atEnd() && !xmlDoc.hasError())
+     {
+
+         xmlDoc.readNext();
+         if (xmlDoc.name() == "Valute")
+         {
+           attrib = xmlDoc.attributes();
+
+           qDebug() << attrib.data()->value().toString();
+           if ( attrib.value("ID").toString() == "R01235" ||
+                attrib.value("ID").toString() == "R01239") //  EURO Dollar
+           {
+               xmlDoc.readNext();
+               flag = true;
+           }
+           else
+           {
+               flag = false;
+           }
+         }
+
+         if (xmlDoc.name() == "Value" && flag)
+         {
+             qDebug() << xmlDoc.readElementText();
+         }
+    }
+     delete reply;
 
 
 }

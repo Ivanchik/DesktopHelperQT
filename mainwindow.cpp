@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //Set IP Address to form
     SetIpAddress();
 
+    //Set valute values
+
+
 }
 
 void MainWindow::SetIpAddress()

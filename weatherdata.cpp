@@ -1,10 +1,16 @@
 #include "weatherdata.h"
 
+#include <QNetworkReply>
+
+
+
 WeatherData::WeatherData(QString path)
 {
     xml = new QXmlStreamReader(path);
     _filname = path;
     read();
+
+
 }
 
 WeatherData::~WeatherData()
@@ -88,4 +94,9 @@ QString WeatherData::errorString()
 {
     return "xml error!";
 }
+
+
+
+
+
 

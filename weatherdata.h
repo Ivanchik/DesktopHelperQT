@@ -6,9 +6,16 @@
 #include <QXmlStreamReader>
 #include <QMap>
 #include <QDebug>
+#include <QDomNode>
+#include <QFile>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QUrl>
+#include <QUrlQuery>
 
-class WeatherData
+class WeatherData : public QObject
 {
+    Q_OBJECT
 public:
     WeatherData(QString path);
     ~WeatherData();
@@ -18,6 +25,9 @@ public:
     int GetTemperature();
     int GetPressure();
     int GetWindSpeed();
+
+    void Test();
+public slots:
 
 private:
     void processRates();
