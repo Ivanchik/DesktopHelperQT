@@ -9,6 +9,7 @@
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
 #include <QEventLoop>
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -24,13 +25,18 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void TryGetValuteData();
+    void UpdateAllData();
+    void TryGetWeatherData();
+
 private:
     Ui::MainWindow *ui;
-
-    //Pointer to the getting weather data
-    WeatherData *wd;
+    WeatherData *weatherData;
     Base *baseWindow;
     void SetIpAddress();
+    QTimer *timer;
+
 };
 
 #endif // MAINWINDOW_H

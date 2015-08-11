@@ -10,7 +10,17 @@
 #include <QEventLoop>
 
 //Time to get current temperature
+#include <QMap>
+#include <QDebug>
+#include <QDomNode>
+#include <QFile>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QUrl>
+#include <QUrlQuery>
+
 #include <QTime>
+
 
 class WeatherData : public QObject
 {
@@ -19,11 +29,13 @@ public:
     WeatherData();
     ~WeatherData();
 
-    //functions for getting data from api
-    int GetTemperature();
-    int GetPressure();
-    int GetWindSpeed();
-
+    QString GetTemperature();
+    QString GetPressure();
+    QString GetWindSpeed();
+    void InitUpdateWeatherData();
+    void Test();
+signals:
+    void trySendWeatherData();
 private:
     //function for read and parse data from api xml
     void read();
@@ -34,8 +46,6 @@ private:
     void processDay();
     void processHour();
 
-    //parse XML
-    void parseWeatherXML();
     QString readNextText();
     QString errorString();
     int current_hour;
@@ -43,9 +53,9 @@ private:
     QString _filname;
     QXmlStreamReader xmlReader;
 
-    int temperature;
-    int pressure;
-    int wind_speed;
+    QString temperature = "No Data";
+    QString pressure = "No Data";
+    QString wind_speed = "No Data";
 };
 
 #endif // WEATHERDATA_H
