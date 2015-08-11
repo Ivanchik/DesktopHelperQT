@@ -29,19 +29,19 @@ public:
 
     void read();
 
-    int GetTemperature();
-    int GetPressure();
-    int GetWindSpeed();
-
+    QString GetTemperature();
+    QString GetPressure();
+    QString GetWindSpeed();
+    void InitUpdateWeatherData();
     void Test();
-public slots:
-
+signals:
+    void trySendWeatherData();
 private:
     void processForecast();
     void processFact();
     void processDay();
     void processHour();
-    void parseWeatherXML();
+
     QString readNextText();
     QString errorString();
     int current_hour;
@@ -49,9 +49,9 @@ private:
     QString _filname;
     QXmlStreamReader xmlReader;
 
-    int temperature;
-    int pressure;
-    int wind_speed;
+    QString temperature = "No Data";
+    QString pressure = "No Data";
+    QString wind_speed = "No Data";
 };
 
 #endif // WEATHERDATA_H

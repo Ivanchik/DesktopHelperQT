@@ -9,6 +9,7 @@
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
 #include <QEventLoop>
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -26,12 +27,16 @@ public:
 
 public slots:
     void TryGetValuteData();
+    void UpdateAllData();
+    void TryGetWeatherData();
 
 private:
     Ui::MainWindow *ui;
-    WeatherData *wd;
+    WeatherData *weatherData;
     Base *baseWindow;
     void SetIpAddress();
+    QTimer *timer;
+
 };
 
 #endif // MAINWINDOW_H

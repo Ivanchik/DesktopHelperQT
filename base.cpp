@@ -9,6 +9,13 @@ Base::Base(MainWindow *view)
     // save view form
     this->view = view;
 
+    InitUpdateValuteData();
+
+}
+
+
+void Base::InitUpdateValuteData()
+{
     //Init valute data taker
     QNetworkAccessManager *m_nam = new QNetworkAccessManager();
 
@@ -20,9 +27,7 @@ Base::Base(MainWindow *view)
                    "application/x-www-form-urlencoded");
 
      m_nam->post(req, postData.toString(QUrl::FullyEncoded).toUtf8());
-
 }
-
 
 void Base::Test()
 {
@@ -74,7 +79,7 @@ void Base::OnLoad(QNetworkReply *reply)
          {
            attrib = xmlDoc.attributes();
 
-           qDebug() << attrib.data()->value().toString();
+           //qDebug() << attrib.data()->value().toString();
            if ( attrib.value("ID").toString() == "R01235") // Dollar
            {
                xmlDoc.readNext();
@@ -101,8 +106,10 @@ void Base::OnLoad(QNetworkReply *reply)
              euro = false;
          }
 
-         emit tryGetValuteData();
+
     }
+
+    emit tryGetValuteData();
     delete reply;
 
 

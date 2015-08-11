@@ -1,15 +1,8 @@
 #include "weatherdata.h"
 
-
-#include <QNetworkReply>
-
-
-
 WeatherData::WeatherData()
 {
-    current_hour = QTime::currentTime().hour();
-    parseWeatherXML();
-
+    InitUpdateWeatherData();
 }
 
 WeatherData::~WeatherData()
@@ -31,18 +24,18 @@ void WeatherData::read()
     }
 }
 
-int WeatherData::GetTemperature()
+QString WeatherData::GetTemperature()
 {
     qDebug() << "WeatherData::GetTemperature() : " << temperature;
     return temperature;
 }
 
-int WeatherData::GetPressure()
+QString WeatherData::GetPressure()
 {
     return pressure;
 }
 
-int WeatherData::GetWindSpeed()
+QString WeatherData::GetWindSpeed()
 {
     return wind_speed;
 }
@@ -69,10 +62,10 @@ void WeatherData::processFact()
 
     while (xmlReader.readNextStartElement()) {
         if (xmlReader.name() == "pressure")
-            pressure = readNextText().toInt();
+            pressure = readNextText();
         else if (xmlReader.name() == "wind_speed")
         {
-            wind_speed = readNextText().toDouble();
+            wind_speed = readNextText();
         }
 
 #ifndef USE_READ_ELEMENT_TEXT
@@ -110,13 +103,14 @@ void WeatherData::processHour()
 
     while (xmlReader.readNextStartElement()) {
         if(xmlReader.name() == "temperature")
-            temperature = readNextText().toInt();
+            temperature = readNextText();
     }
 
 }
 
-void WeatherData::parseWeatherXML()
+void WeatherData::InitUpdateWeatherData()
 {
+    current_hour = QTime::currentTime().hour();
     const QString weatherApi = "http://export.yandex.ru/weather-ng/forecasts/27595.xml";
 
     QNetworkAccessManager network_mgr;
@@ -126,6 +120,8 @@ void WeatherData::parseWeatherXML()
     loop.exec();
     xmlReader.addData(reply->readAll());
     read();
+
+    emit trySendWeatherData();
 }
 
 QString WeatherData::readNextText()

@@ -38,6 +38,7 @@ public:
     QString getEuroValue() const;
     void setEuroValue(const QString &value);
 
+    void InitUpdateValuteData();
 signals:
     void tryGetValuteData();
 
