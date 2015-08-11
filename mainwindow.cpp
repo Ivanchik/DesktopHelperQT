@@ -20,8 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //Set IP Address to form
     SetIpAddress();
 
-    //Set valute values
-
+    //connect valute sig/slot
+    connect(baseWindow,SIGNAL(tryGetValuteData()),this,SLOT(TryGetValuteData()));
 
 }
 
@@ -35,4 +35,18 @@ void MainWindow::SetIpAddress()
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::TryGetValuteData()
+{
+    //Set valute values
+    try
+    {
+        ui->dollarValueLabel->setText(baseWindow->getDollarValue());
+        ui->euroValueLabel->setText(baseWindow->getEuroValue());
+    }
+    catch (...)
+    {
+
+    }
 }

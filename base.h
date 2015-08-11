@@ -29,6 +29,19 @@ public:
     Base(MainWindow* view);
     QString getIP();
     void Test();
+    QString dollarValue = "No data";
+    QString euroValue = "No data";
+
+    QString getDollarValue() const;
+    void setDollarValue(const QString &value);
+
+    QString getEuroValue() const;
+    void setEuroValue(const QString &value);
+
+signals:
+    void tryGetValuteData();
+
+
 public slots:
     void OnLoad(QNetworkReply *reply);
 };

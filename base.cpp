@@ -9,19 +9,12 @@ Base::Base(MainWindow *view)
     // save view form
     this->view = view;
 
-    //get ip address
-
-}
-
-
-void Base::Test()
-{
+    //Init valute data taker
     QNetworkAccessManager *m_nam = new QNetworkAccessManager();
 
     connect(m_nam, SIGNAL(finished(QNetworkReply*)), SLOT(OnLoad(QNetworkReply*)));
 
     QUrlQuery postData;
-    // postData.addQueryItem("ID", "R01235");
     QNetworkRequest req(QUrl("http://www.cbr.ru/scripts/XML_daily.asp?"));
      req.setHeader(QNetworkRequest::ContentTypeHeader,
                    "application/x-www-form-urlencoded");
@@ -30,19 +23,48 @@ void Base::Test()
 
 }
 
+
+void Base::Test()
+{
+
+
+}
+QString Base::getEuroValue() const
+{
+    return euroValue;
+}
+
+void Base::setEuroValue(const QString &value)
+{
+    euroValue = value;
+}
+
+QString Base::getDollarValue() const
+{
+    return dollarValue;
+}
+
+void Base::setDollarValue(const QString &value)
+{
+    dollarValue = value;
+}
+
+
 void Base::OnLoad(QNetworkReply *reply)
 {
 
 
-//// TODO
-/// Refactor code
+    //// TODO
+    /// Refactor code
+    ///
 
-     QByteArray allData = reply->readAll();
-     QXmlStreamReader xmlDoc(allData);
+    QByteArray allData = reply->readAll();
+    QXmlStreamReader xmlDoc(allData);
      //QXmlStreamReader::TokenType token;
      QXmlStreamAttributes attrib;
 
-     bool flag = false;
+     bool dollar = false;
+     bool euro = false;
 
      while (!xmlDoc.atEnd() && !xmlDoc.hasError())
      {
@@ -53,24 +75,35 @@ void Base::OnLoad(QNetworkReply *reply)
            attrib = xmlDoc.attributes();
 
            qDebug() << attrib.data()->value().toString();
-           if ( attrib.value("ID").toString() == "R01235" ||
-                attrib.value("ID").toString() == "R01239") //  EURO Dollar
+           if ( attrib.value("ID").toString() == "R01235") // Dollar
            {
                xmlDoc.readNext();
-               flag = true;
+               dollar = true;
            }
-           else
+
+           if (attrib.value("ID").toString() == "R01239") //  EURO
            {
-               flag = false;
+               xmlDoc.readNext();
+               euro = true;
            }
+
          }
 
-         if (xmlDoc.name() == "Value" && flag)
+         if (xmlDoc.name() == "Value" && dollar)
          {
-             qDebug() << xmlDoc.readElementText();
+             dollarValue = xmlDoc.readElementText();
+             dollar = false;
          }
+
+         if (xmlDoc.name() == "Value" && euro)
+         {
+             euroValue = xmlDoc.readElementText();
+             euro = false;
+         }
+
+         emit tryGetValuteData();
     }
-     delete reply;
+    delete reply;
 
 
 }
