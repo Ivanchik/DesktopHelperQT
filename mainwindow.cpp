@@ -22,10 +22,14 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect valute sig/slot
     connect(baseWindow,SIGNAL(tryGetValuteData()),this,SLOT(TryGetValuteData()));
 
+    //init timer
     timer = new QTimer(this);
     timer->setInterval(15000);
     timer->start();
     connect(timer,SIGNAL(timeout()), this, SLOT(UpdateAllData()));
+
+    //install filter
+    this->installEventFilter(this);
 }
 
 void MainWindow::SetIpAddress()
@@ -81,7 +85,34 @@ void MainWindow::TryGetWeatherData()
 void MainWindow::OnTrayActivate(QSystemTrayIcon::ActivationReason active)
 {
     if (active == QSystemTrayIcon::DoubleClick)
-        ui->centralWidget->setWindowState(Qt::WindowNoState);
+    {
+        this->show();
+        //this->showNormal();
+
+    }
+
+}
+
+// Check for pressed keys
+bool MainWindow::eventFilter(QObject * obj, QEvent * event)
+{
+    if(event->type()==QEvent::KeyPress) {
+
+        pressedKeys += ((QKeyEvent*)event)->key();
+
+        if ( pressedKeys.contains(Qt::Key_Escape))
+            this->hide();
+
+        if( pressedKeys.contains(Qt::Key_Escape) &&
+                pressedKeys.contains(Qt::Key_Shift) )
+            this->close();
+
+    }
+    else if(event->type()==QEvent::KeyRelease)
+    {
+        pressedKeys -= ((QKeyEvent*)event)->key();
+    }
 
 
+    return false;
 }
