@@ -9,8 +9,12 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowFlags(Qt::CustomizeWindowHint);
     ui->setupUi(this);
 
+    // Instances
     weatherData = new WeatherData();
     baseWindow = new Base(this);
+
+    //Set First Position
+    SetLoadPosition();
 
     //Set IP Address to form
     SetIpAddress();
@@ -37,6 +41,13 @@ void MainWindow::SetIpAddress()
     QString bufferIP = baseWindow->getIP();
     if ( bufferIP != NULL)
         ui->ipAddressValue->setText(bufferIP);
+}
+
+void MainWindow::SetLoadPosition()
+{
+    int width = 50; // Just for people, who have start menu on left side.
+    int height = 0;
+    this->move(width, height);
 }
 
 MainWindow::~MainWindow()
@@ -115,4 +126,34 @@ bool MainWindow::eventFilter(QObject * obj, QEvent * event)
 
 
     return false;
+}
+
+
+
+
+
+// Drag and drop window on the screen
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if (event->buttons() == Qt::LeftButton)
+    {
+        this->move(event->globalPos() + windowLocation);
+    }
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    if (event->buttons() == Qt::LeftButton)
+    {
+        windowLocation = this->pos() - event->globalPos();
+    }
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->buttons() == Qt::LeftButton)
+    {
+        this->move(event->globalPos());
+    }
 }

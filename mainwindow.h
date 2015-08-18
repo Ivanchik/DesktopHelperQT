@@ -34,13 +34,20 @@ public slots:
     void TryGetWeatherData();
     void OnTrayActivate(QSystemTrayIcon::ActivationReason active);
     bool eventFilter(QObject *obj, QEvent *event);
+    void mouseMoveEvent(QMouseEvent* event);
+    void mousePressEvent(QMouseEvent* event);
+    void mouseReleaseEvent(QMouseEvent* event);
+
+
 private:
     Ui::MainWindow *ui;
     WeatherData *weatherData;
     Base *baseWindow;
     void SetIpAddress();
+    void SetLoadPosition();
     QTimer *timer;
     QSet<int> pressedKeys;
+    QPoint windowLocation;
 
 
 
