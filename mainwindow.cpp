@@ -87,9 +87,9 @@ void MainWindow::UpdateAllData()
 
 void MainWindow::TryGetWeatherData()
 {
-    ui->temperatureValueLabel->setText(weatherData->GetTemperature() + "ºC");
-    ui->pressureValueLabel->setText(weatherData->GetPressure() + "mm");
-    ui->windValueLabel->setText(weatherData->GetWindSpeed() + "m/s");
+    ui->temperatureValueLabel->setText(weatherData->GetTemperature() + " ºC");
+    ui->pressureValueLabel->setText(weatherData->GetPressure() + " mm");
+    ui->windValueLabel->setText(weatherData->GetWindSpeed() + " m/s");
 
 }
 
@@ -100,7 +100,6 @@ void MainWindow::OnTrayActivate(QSystemTrayIcon::ActivationReason active)
         this->show();
         UpdateAllData();
     }
-
 }
 
 // Check for pressed keys
@@ -110,19 +109,20 @@ bool MainWindow::eventFilter(QObject * obj, QEvent * event)
 
         pressedKeys += ((QKeyEvent*)event)->key();
 
-        if ( pressedKeys.contains(Qt::Key_Escape))
-            this->hide();
-
         if( pressedKeys.contains(Qt::Key_Escape) &&
                 pressedKeys.contains(Qt::Key_Shift) )
             this->close();
 
+        if ( pressedKeys.contains(Qt::Key_Escape))
+        {
+            this->hide();
+            pressedKeys.clear();
+        }
     }
     else if(event->type()==QEvent::KeyRelease)
     {
-        pressedKeys -= ((QKeyEvent*)event)->key();
+        pressedKeys.clear();
     }
-
 
     return false;
 }

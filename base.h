@@ -29,7 +29,7 @@ private:
     MainWindow* view;
     QSystemTrayIcon *trayIcon;
 
-    void WorkWithSystemTray();
+    void ShowSystemTray();
 public:
     Base(MainWindow* view);
     QString getIP();
@@ -44,6 +44,7 @@ public:
     void setEuroValue(const QString &value);
 
     void InitUpdateValuteData();
+    void CreateTrayIcon();
 signals:
     void tryGetValuteData();
 

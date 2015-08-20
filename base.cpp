@@ -5,13 +5,13 @@ Base::Base(MainWindow *view)
     // save view form
     this->view = view;
 
-    WorkWithSystemTray();
-
     InitUpdateValuteData();
+
+    CreateTrayIcon();
 
 }
 
-void Base::WorkWithSystemTray()
+void Base::CreateTrayIcon()
 {
     try
     {
@@ -19,16 +19,21 @@ void Base::WorkWithSystemTray()
         trayIcon = new QSystemTrayIcon(QIcon("://images/superman.ico"), this);
         QMenu *menu = new QMenu("Desktop Helper");
         trayIcon->setContextMenu(menu);
-        trayIcon->show();
 
         connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
                                  view, SLOT(OnTrayActivate(QSystemTrayIcon::ActivationReason)));
+
+        ShowSystemTray();
     }
     catch (...)
     {
-        qWarning() << "Error in System Tray method";
+        qWarning() << "Error in System Tray creating";
     }
+}
 
+void Base::ShowSystemTray()
+{
+   if (trayIcon != NULL) trayIcon->show();
 }
 
 void Base::InitUpdateValuteData()
@@ -52,6 +57,7 @@ void Base::Test()
 
 
 }
+
 QString Base::getEuroValue() const
 {
     return euroValue;

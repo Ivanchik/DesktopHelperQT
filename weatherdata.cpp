@@ -41,6 +41,7 @@ QString WeatherData::GetWindSpeed()
 
 void WeatherData::processForecast()
 {
+    qDebug() << "xml read begun...";
     if (!xmlReader.isStartElement() || xmlReader.name() != "forecast")
         return;
     while (xmlReader.readNextStartElement()) {
@@ -119,6 +120,7 @@ void WeatherData::InitUpdateWeatherData()
     loop.exec();
     xmlReader.addData(reply->readAll());
     read();
+
 
     emit trySendWeatherData();
     qDebug() << "signal for weather update is sended";
