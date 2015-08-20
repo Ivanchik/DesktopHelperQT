@@ -24,10 +24,15 @@
 	border-image: url(:/backgrounds/background.png);
 }
 QLabel#temperatureNameLabel,QLabel#temperatureValueLabel,QLabel#pressureNameLabel,QLabel#pressureValueLabel,QLabel#windNameLabel,QLabel#windValueLabel{
-	background-color: rgba(70, 255, 138, 170);
+background-color: rgb(255, 255, 255);
 }
-QLabel#temperatureValueLabel{
-	background-color: rgba(70, 255, 138, 170);
+
+QLabel#dollarValueLabel, QLabel#dollarNameLabel, QLabel#euroValueLabel, QLabel#euroNameLabel{
+background-color: rgb(0, 85, 255);
+}
+
+QLabel#ipAddressValue, QLabel#ipAddressName{
+background-color: rgb(255, 75, 75);
 }
 
 QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
@@ -53,6 +58,7 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
       <property name="font">
        <font>
         <family>Century Gothic</family>
+        <pointsize>9</pointsize>
         <weight>75</weight>
         <italic>true</italic>
         <bold>true</bold>
@@ -78,7 +84,7 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
            <property name="font">
             <font>
              <family>Century Gothic</family>
-             <pointsize>8</pointsize>
+             <pointsize>9</pointsize>
              <weight>75</weight>
              <italic>true</italic>
              <bold>true</bold>
@@ -103,6 +109,7 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
            <property name="font">
             <font>
              <family>Century Gothic</family>
+             <pointsize>9</pointsize>
              <weight>75</weight>
              <italic>true</italic>
              <bold>true</bold>
@@ -124,6 +131,7 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
            <property name="font">
             <font>
              <family>Century Gothic</family>
+             <pointsize>9</pointsize>
              <weight>75</weight>
              <italic>true</italic>
              <bold>true</bold>
@@ -146,6 +154,7 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
            <property name="font">
             <font>
              <family>Century Gothic</family>
+             <pointsize>9</pointsize>
              <weight>75</weight>
              <italic>true</italic>
              <bold>true</bold>
@@ -161,6 +170,7 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
            <property name="font">
             <font>
              <family>Century Gothic</family>
+             <pointsize>9</pointsize>
              <weight>75</weight>
              <italic>true</italic>
              <bold>true</bold>
@@ -176,6 +186,7 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
            <property name="font">
             <font>
              <family>Century Gothic</family>
+             <pointsize>9</pointsize>
              <weight>75</weight>
              <italic>true</italic>
              <bold>true</bold>
@@ -195,7 +206,10 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
      <widget class="QGroupBox" name="exchangeRatesBox">
       <property name="font">
        <font>
+        <family>Century Gothic</family>
+        <pointsize>9</pointsize>
         <weight>75</weight>
+        <italic>true</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -218,7 +232,10 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
           <widget class="QLabel" name="dollarNameLabel">
            <property name="font">
             <font>
+             <family>Century Gothic</family>
+             <pointsize>9</pointsize>
              <weight>75</weight>
+             <italic>true</italic>
              <bold>true</bold>
             </font>
            </property>
@@ -234,7 +251,10 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
           <widget class="QLabel" name="euroNameLabel">
            <property name="font">
             <font>
+             <family>Century Gothic</family>
+             <pointsize>9</pointsize>
              <weight>75</weight>
+             <italic>true</italic>
              <bold>true</bold>
             </font>
            </property>
@@ -254,7 +274,10 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
           <widget class="QLabel" name="dollarValueLabel">
            <property name="font">
             <font>
+             <family>Century Gothic</family>
+             <pointsize>9</pointsize>
              <weight>75</weight>
+             <italic>true</italic>
              <bold>true</bold>
             </font>
            </property>
@@ -267,7 +290,10 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
           <widget class="QLabel" name="euroValueLabel">
            <property name="font">
             <font>
+             <family>Century Gothic</family>
+             <pointsize>9</pointsize>
              <weight>75</weight>
+             <italic>true</italic>
              <bold>true</bold>
             </font>
            </property>
@@ -285,7 +311,10 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
      <widget class="QGroupBox" name="ipAddressBox">
       <property name="font">
        <font>
+        <family>Century Gothic</family>
+        <pointsize>9</pointsize>
         <weight>75</weight>
+        <italic>true</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -300,7 +329,10 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
         <widget class="QLabel" name="ipAddressName">
          <property name="font">
           <font>
+           <family>Century Gothic</family>
+           <pointsize>9</pointsize>
            <weight>75</weight>
+           <italic>true</italic>
            <bold>true</bold>
           </font>
          </property>
@@ -316,7 +348,10 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
         <widget class="QLabel" name="ipAddressValue">
          <property name="font">
           <font>
+           <family>Century Gothic</family>
+           <pointsize>9</pointsize>
            <weight>75</weight>
+           <italic>true</italic>
            <bold>true</bold>
           </font>
          </property>

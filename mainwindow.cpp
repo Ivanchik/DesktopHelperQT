@@ -98,8 +98,7 @@ void MainWindow::OnTrayActivate(QSystemTrayIcon::ActivationReason active)
     if (active == QSystemTrayIcon::DoubleClick)
     {
         this->show();
-        //this->showNormal();
-
+        UpdateAllData();
     }
 
 }

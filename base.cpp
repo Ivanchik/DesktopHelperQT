@@ -46,6 +46,7 @@ void Base::InitUpdateValuteData()
      m_nam->post(req, postData.toString(QUrl::FullyEncoded).toUtf8());
 }
 
+//Only for testing some code.
 void Base::Test()
 {
 
@@ -90,7 +91,6 @@ void Base::OnLoad(QNetworkReply *reply)
 
      while (!xmlDoc.atEnd() && !xmlDoc.hasError())
      {
-
          xmlDoc.readNext();
          if (xmlDoc.name() == "Valute")
          {
@@ -108,7 +108,6 @@ void Base::OnLoad(QNetworkReply *reply)
                xmlDoc.readNext();
                euro = true;
            }
-
          }
 
          if (xmlDoc.name() == "Value" && dollar)
@@ -122,14 +121,10 @@ void Base::OnLoad(QNetworkReply *reply)
              euroValue = xmlDoc.readElementText();
              euro = false;
          }
-
-
     }
 
     emit tryGetValuteData();
     delete reply;
-
-
 }
 
 
