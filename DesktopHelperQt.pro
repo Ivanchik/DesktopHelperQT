@@ -8,7 +8,7 @@ QT       += core gui xml network
 CONFIG += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+#CONFIG += warn_off
 TARGET = DesktopHelperQt
 TEMPLATE = app
 
@@ -30,6 +30,7 @@ DISTFILES += \
     DesktopHelperQt.pro.user.7c9bc3e \
     LICENSE \
     README.md \
+    Dockerfile
 
 RESOURCES += \
     resources.qrc

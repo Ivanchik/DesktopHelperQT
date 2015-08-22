@@ -39,12 +39,16 @@ public slots:
     void mouseReleaseEvent(QMouseEvent* event);
 
 
+private slots:
+    void on_comboBox_activated(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     WeatherData *weatherData;
     Base *baseWindow;
     void SetIpAddress();
     void SetLoadPosition();
+    void SetDefaultCitiesComboBox();
     QTimer *timer;
     QSet<int> pressedKeys;
     QPoint windowLocation;

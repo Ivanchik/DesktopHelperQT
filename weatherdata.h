@@ -25,6 +25,8 @@
 class WeatherData : public QObject
 {
     Q_OBJECT
+
+
 public:
     WeatherData();
     ~WeatherData();

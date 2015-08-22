@@ -32,8 +32,11 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->start();
     connect(timer,SIGNAL(timeout()), this, SLOT(UpdateAllData()));
 
-    //install filter
+    //install filter for key press
     this->installEventFilter(this);
+
+    //Push default cities to comboBox
+    SetDefaultCitiesComboBox();
 }
 
 void MainWindow::SetIpAddress()
@@ -48,6 +51,12 @@ void MainWindow::SetLoadPosition()
     int width = 50; // Just for people, who have start menu on left side.
     int height = 0;
     this->move(width, height);
+}
+
+void MainWindow::SetDefaultCitiesComboBox()
+{
+    ui->comboBox->addItem("Kazan");
+    ui->comboBox->addItem("Magnitogorsk");
 }
 
 MainWindow::~MainWindow()
@@ -105,6 +114,7 @@ void MainWindow::OnTrayActivate(QSystemTrayIcon::ActivationReason active)
 // Check for pressed keys
 bool MainWindow::eventFilter(QObject * obj, QEvent * event)
 {
+
     if(event->type()==QEvent::KeyPress) {
 
         pressedKeys += ((QKeyEvent*)event)->key();
@@ -155,4 +165,10 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
     {
         this->move(event->globalPos());
     }
+}
+
+void MainWindow::on_comboBox_activated(const QString &arg1)
+{
+//    if (arg1 == "Kazan")
+
 }

@@ -78,10 +78,12 @@ void Base::setDollarValue(const QString &value)
     dollarValue = value;
 }
 
-
 void Base::OnLoad(QNetworkReply *reply)
 {
 
+    #ifdef QT_DEBUG
+        qDebug() << "This is debug";
+    #endif
 
     //// TODO
     /// Refactor code
@@ -133,8 +135,6 @@ void Base::OnLoad(QNetworkReply *reply)
     delete reply;
 }
 
-
-
 QString Base::getIP()
 {
     try
@@ -164,8 +164,5 @@ QString Base::getIP()
 
         return NULL;
     }
-
-
-
 }
 

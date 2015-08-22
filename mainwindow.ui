@@ -72,130 +72,141 @@ QGroupBox#weatherBox,QGroupBox#exchangeRatesBox,QGroupBox#ipAddressBox{
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <layout class="QVBoxLayout" name="weatherNamesLayout">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
+        <layout class="QVBoxLayout" name="allWeatherLayout">
          <item>
-          <widget class="QLabel" name="temperatureNameLabel">
-           <property name="font">
-            <font>
-             <family>Century Gothic</family>
-             <pointsize>9</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="text">
-            <string>Temperature:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
+          <widget class="QComboBox" name="comboBox"/>
          </item>
          <item>
-          <widget class="QLabel" name="windNameLabel">
-           <property name="font">
-            <font>
-             <family>Century Gothic</family>
-             <pointsize>9</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>Wind:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="pressureNameLabel">
-           <property name="font">
-            <font>
-             <family>Century Gothic</family>
-             <pointsize>9</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Pressure:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="weatherValuesLayout">
-         <item>
-          <widget class="QLabel" name="temperatureValueLabel">
-           <property name="font">
-            <font>
-             <family>Century Gothic</family>
-             <pointsize>9</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>temperature</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="windValueLabel">
-           <property name="font">
-            <font>
-             <family>Century Gothic</family>
-             <pointsize>9</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>wind</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="pressureValueLabel">
-           <property name="font">
-            <font>
-             <family>Century Gothic</family>
-             <pointsize>9</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>pressure</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="weatherWithoutBoxLayout">
+           <item>
+            <layout class="QVBoxLayout" name="weatherNamesLayout">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="temperatureNameLabel">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>9</pointsize>
+                 <weight>75</weight>
+                 <italic>true</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>Temperature:</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="windNameLabel">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>9</pointsize>
+                 <weight>75</weight>
+                 <italic>true</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="text">
+                <string>Wind:</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="pressureNameLabel">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>9</pointsize>
+                 <weight>75</weight>
+                 <italic>true</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Pressure:</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="weatherValuesLayout">
+             <item>
+              <widget class="QLabel" name="temperatureValueLabel">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>9</pointsize>
+                 <weight>75</weight>
+                 <italic>true</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>temperature</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="windValueLabel">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>9</pointsize>
+                 <weight>75</weight>
+                 <italic>true</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>wind</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="pressureValueLabel">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>9</pointsize>
+                 <weight>75</weight>
+                 <italic>true</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>pressure</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>

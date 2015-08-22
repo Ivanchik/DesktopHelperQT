@@ -110,8 +110,8 @@ void WeatherData::processHour()
 
 void WeatherData::InitUpdateWeatherData()
 {
-    current_hour = QTime::currentTime().hour();
-    const QString weatherApi = "http://export.yandex.ru/weather-ng/forecasts/27595.xml";
+    current_hour = QTime::currentTime().hour();//27595
+    const QString weatherApi = "http://export.yandex.ru/weather-ng/forecasts/420111.xml";
 
     QNetworkAccessManager network_mgr;
     QNetworkReply *reply = network_mgr.get(QNetworkRequest(weatherApi));
