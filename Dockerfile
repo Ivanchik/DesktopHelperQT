@@ -1,9 +1,9 @@
 # Minimal docker container to build project
-# Image: rabits/qt-android:5.4
 
-FROM windows10
-MAINTAINER Ivan <bikeev-ivan@yandex.ru>
+FROM ubuntu:14.04
+MAINTAINER Ivan <bikeev-ivan@yandex.ru> (@bikeev)
 
+ENV DEBIAN_FRONTEND noninteractive
 ENV QT_PATH /opt/Qt
 
 # Install updates & requirements:
@@ -39,6 +39,9 @@ RUN mkdir -p /tmp/qt \
 
 # Reconfigure locale
 RUN locale-gen en_US.UTF-8 && dpkg-reconfigure locales
+
+# Add group & user
+RUN groupadd -r user && useradd --create-home --gid user user && echo 'user ALL=NOPASSWD: ALL' > /etc/sudoers.d/user
 
 USER user
 WORKDIR /home/user
