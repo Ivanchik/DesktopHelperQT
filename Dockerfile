@@ -1,7 +1,7 @@
 # Minimal docker container to build project
 
 FROM ubuntu:14.04
-MAINTAINER Ivan <bikeev-ivan@yandex.ru> (@bikeev)
+MAINTAINER Ivan <bikeev-ivan@yandex.ru> (@ivanchik)
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV QT_PATH /opt/Qt
