@@ -32,9 +32,6 @@ RUN mkdir -p /tmp/qt \
     && curl -Lo /tmp/qt/installer.run 'http://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x64-android-5.4.0.run' \
     && chmod 755 /tmp/qt/installer.run && /tmp/qt/installer.run --dump-binary-data -o /tmp/qt/data \
     && mkdir $QT_PATH && cd $QT_PATH \
-    && 7zr x /tmp/qt/data/qt.54.android_armv7/5.4.0-1qt5_essentials.7z > /dev/null \
-    && 7zr x /tmp/qt/data/qt.54.android_armv7/5.4.0-1qt5_addons.7z > /dev/null \
-    && /tmp/qt/installer.run --runoperation QtPatch linux $QT_ANDROID qt5 \
     && rm -rf /tmp/qt
 
 # Reconfigure locale
